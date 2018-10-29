@@ -51,7 +51,7 @@ defmodule Ueberauth.Strategy.Bnet do
 
   @doc false
   defp fetch_user(conn, client) do
-    resp = OAuth2.Client.get(client, "/account/user")
+    resp = OAuth2.Client.get(client, "/oauth/userinfo")
 
     case resp do
       {:ok, %OAuth2.Response{status_code: 401, body: _body}} ->
