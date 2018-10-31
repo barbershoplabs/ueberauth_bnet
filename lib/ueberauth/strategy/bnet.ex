@@ -18,7 +18,6 @@ defmodule Ueberauth.Strategy.Bnet do
 
   @doc false
   def handle_callback!(%Plug.Conn{params: %{"code" => code}} = conn) do
-    #opts = [redirect_uri: callback_url(conn)]
     client = Ueberauth.Strategy.Bnet.OAuth.get_token!([code: code, redirect_uri: callback_url(conn)])
 
     if client.token.access_token == nil do

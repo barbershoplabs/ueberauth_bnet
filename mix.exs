@@ -6,7 +6,7 @@ defmodule UeberauthBnet.Mixfile do
   def project() do
     [app: :ueberauth_bnet,
      version: @version,
-     elixir: "~> 1.4",
+     elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: "Ueberauth strategy for Battle.net authentication.",
