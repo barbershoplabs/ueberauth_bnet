@@ -4,6 +4,7 @@ defmodule Ueberauth.Strategy.Bnet do
   # Callbacks
   @doc false
   def handle_request!(conn) do
+    IO.puts "IN HANDLE REQUEST!"
     scopes = conn.params["scope"] || Keyword.get(default_options(), :scope)
     opts = [scope: scopes]
 
@@ -18,6 +19,9 @@ defmodule Ueberauth.Strategy.Bnet do
 
   @doc false
   def handle_callback!(%Plug.Conn{params: %{"code" => code}} = conn) do
+    IO.puts "IN HANDLE CALLBACK!"
+    IO.puts code
+    
     client = Ueberauth.Strategy.Bnet.OAuth.get_token!([code: code, redirect_uri: callback_url(conn)])
 
     if client.token.access_token == nil do
@@ -33,6 +37,7 @@ defmodule Ueberauth.Strategy.Bnet do
 
   @doc false
   def handle_callback!(conn) do
+    IO.puts "IN HANDLE CALLBACK2!"
     set_errors!(conn, [error("missing_code", "No code received")])
   end
 
